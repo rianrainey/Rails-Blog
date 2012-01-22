@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tags %>
+</head>
+<body style="background: #EEEEEE;">
+
+<div id="container" class="container_16">
+  
+  <div id="header">
+    <div id="title" class="alpha grid_10">
+      <h1><a href="/">Rian Rainey</a></h1>
+    </div><!-- #title -->
+    
+    <div id="user_nav" class="push_1 grid_5">
+      <div class="name">
+        <% if user_signed_in? %>
+          Signed in as <%= current_user.email %>. 
+          <br/>Not you? <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign Up", new_user_registration_path %> or <%= link_to "Sign In", new_user_session_path %>
+        <% end %>
+      </div>
+    </div><!-- #user_nav -->
+    
+  </div><!-- #header -->
+  <div class="clear"></div>
+  
+  <div id="primary-menu">
+    <ul>
+      <li><%= link_to "Posts", posts_path %></li>
+      <li><%= link_to "Albums", albums_path %></li>
+    </ul>
+  </div><!-- #primary-menu -->
+  
+  <div id="content">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+
+    <%= yield %>    
+  </div><!-- #content -->
+ 
+</div><!-- #container -->
+
+ 
+</body>
+</html>
