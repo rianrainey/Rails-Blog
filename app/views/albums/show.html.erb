@@ -11,10 +11,14 @@
 </p>
 
 <p>
-  <b>Picture</b><br/>
-  <%= image_tag @album.photo.url(:thumb)%>
+  <b>Photos:</b>
+  <% Photo.all.each do |p| %>
+    <%= image_tag p.image %>
+  <% end %>
 </p>
 
+
+<% debug @album %>
 
 <%= link_to 'Edit', edit_album_path(@album) %> |
 <%= link_to 'Back', albums_path %>

@@ -40,7 +40,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     
     # Allow multiple uploaded files
-    20.times { @album.photo.buid }
+    #20.times { @album.photo.buid }
   end
 
   # POST /albums
